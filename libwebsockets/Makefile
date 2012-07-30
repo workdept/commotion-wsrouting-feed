@@ -34,14 +34,28 @@ define Package/libwebsockets/description
   C Websockets Server Library, this package only installs the library and a test application.
 endef
 
+
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/include
+	$(CP) $(PKG_BUILD_DIR)/lib/libwebsockets.h $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) $(PKG_BUILD_DIR)/lib/.libs/libwebsockets.{a,so*} $(1)/usr/lib/	
+endef
+
 define Package/libwebsockets/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(INSTALL_DIR) $(1)/usr/share/libwebsockets-test-server
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/test-server/.libs/libwebsockets-test-server $(1)/usr/sbin/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/.libs/libwebsockets.so.0.0.3 $(1)/usr/lib/libwebsockets.so.0
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/.libs/libwebsockets.{a,so*} $(1)/usr/lib/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/test-server/test.html $(1)/usr/share/libwebsockets-test-server
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/test-server/favicon.ico $(1)/usr/share/libwebsockets-test-server
+	
+	$(INSTALL_DIR) $(1)/usr/include
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/lib/libwebsockets.h $(1)/usr/include
+	
+
+
 endef
 
 $(eval $(call BuildPackage,libwebsockets))
