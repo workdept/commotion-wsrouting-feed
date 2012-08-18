@@ -12,7 +12,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/commotion-ws-routing
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=git@github.com:AdamMagaluk/commotion-ws-routing.git
-PKG_SOURCE_VERSION:=68561697f43272e7f660b827f8c7b742226cc59f
+PKG_SOURCE_VERSION:=5b375c523369375919d4125fceeda7dbc4a55310
 PKG_SOURCE_SUBDIR:=commotion-ws-routing
 PKG_SOURCE_PROTO:=git
 
@@ -49,7 +49,34 @@ define Package/ws-routing/install
 
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/commotion
 	$(CP) -a $(PKG_BUILD_DIR)/tests/luci-chat-server/* $(1)/usr/lib/lua/luci/view/commotion/ 2>/dev/null || true
+
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(CP) -a $(PKG_BUILD_DIR)/config/wsrouting $(1)/etc/init.d/
+		
 	
+endef
+
+
+
+define Package/ws-routing/postinst
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+        echo "Enabling rc.d symlink for ws-routing"
+        /etc/init.d/wsrouting enable
+fi
+exit 0
+endef
+
+define Package/ws-routing/prerm
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+        echo "Removing rc.d symlink for ws-routing"
+        /etc/init.d/wsrouting disable
+fi
+exit 0
 endef
 
 $(eval $(call BuildPackage,ws-routing))
