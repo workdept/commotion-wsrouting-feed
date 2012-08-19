@@ -35,7 +35,7 @@ endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/include
-	$(CP) $(PKG_BUILD_DIR)/src/jacnsson.h $(1)/usr/include/
+	$(CP) $(PKG_BUILD_DIR)/src/jansson.h $(1)/usr/include/
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) $(PKG_BUILD_DIR)/src/.libs/libjansson.{a,so*} $(1)/usr/lib/	
 endef
