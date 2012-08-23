@@ -12,7 +12,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/commotion-ws-routing
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=git@github.com:AdamMagaluk/commotion-ws-routing.git
-PKG_SOURCE_VERSION:=ca195581490d973de346c849c77683e24d2a2957
+PKG_SOURCE_VERSION:=af642af3a8861854a3247778afa3e184e32732ec
 PKG_SOURCE_SUBDIR:=commotion-ws-routing
 PKG_SOURCE_PROTO:=git
 
