@@ -44,13 +44,6 @@ define Package/ws-routing/install
 	$(INSTALL_DIR) $(1)/usr/lib/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/.libs/libcommotionws.{a,so*} $(1)/usr/lib/
 
-	$(INSTALL_DIR) $(1)/www/luci-static/resources/
-	$(CP) -a $(PKG_BUILD_DIR)/js/* $(1)/www/luci-static/resources/ 2>/dev/null || true
-
-	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/commotion
-	$(CP) -a $(PKG_BUILD_DIR)/tests/luci-chat-server/* $(1)/usr/lib/lua/luci/view/commotion/ 2>/dev/null || true
-
-
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(CP) -a $(PKG_BUILD_DIR)/config/wsrouting $(1)/etc/init.d/
 		
