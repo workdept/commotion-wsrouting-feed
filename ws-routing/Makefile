@@ -6,13 +6,14 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ws-routing
 PKG_RELEASE:=1
-PKG_VERSION:=0.0.1
+PKG_REV:=7942da7b7ed4afc4c42b28553b0baf3a47060917
+PKG_VERSION:=r$(PKG_REV)
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/commotion-ws-routing
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://github.com/AdamMagaluk/commotion-ws-routing.git
-PKG_SOURCE_VERSION:=af642af3a8861854a3247778afa3e184e32732ec
+PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_SUBDIR:=commotion-ws-routing
 PKG_SOURCE_PROTO:=git
 
